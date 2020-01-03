@@ -18,6 +18,12 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
+    scripts: [
+      {
+        src: "https://code.jquery.com/jquery-3.3.1.slim.min.js",
+        type: "text/javascript"
+      },
+    ],
   },
   /*
   ** Customize the progress-bar color
@@ -32,6 +38,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/jquery'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -66,10 +73,10 @@ module.exports = {
   proxy: {
     // '/missions?': 'http://contentplace.x1.fr/missions?',
     // 'http://localhost:3100/missions?': 'http://contentplace.x1.fr',
-    '/missions': {
-      target: 'http://contentplace.x1.fr/missions?client_secret=%242y%2410%24r1u8S82qpoLo.ASFBnUQCe6MGJhOyuGYderz5fA64asogQ3LFpJIi',
+    /* '/missions': {
+      target: 'http://contentplace.x1.fr/missions?client_secret=%242y%2410%24r1u8S82qpoLo.ASFBnUQCe6MGJhOyuGYderz5fA64asogQ3LFpJIi&mission_status=ongoing',
       pathRewrite: { '^/missions': '' },
-    },
+    }, */
   },
   /*
   ** Build configuration
