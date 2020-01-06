@@ -19,8 +19,9 @@
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "node-sass": "^4.13.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.11.0",
     "sass-loader": "^8.0.0",
+    "vue-infinite-loading": "^2.4.4",
     "vue-virtual-scroller": "^1.0.0-rc.2"
   },
   "devDependencies": {

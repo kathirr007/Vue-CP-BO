@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 module.exports = {
   server: {
     // port: 3100, // default 3000
@@ -38,7 +38,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/jquery'
+    // '~/plugins/jquery'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -81,10 +81,19 @@ module.exports = {
   /*
   ** Build configuration
   */
+  /* enable Vue devtools */
+/*   vue: {
+    config: {
+      productionTip: false,
+      devtools: true,
+    },
+  }, */
+  /* enable Vue devtools ends*/
   build: {
     /*
     ** You can extend webpack config here
     */
+    devtools: true, //enable Vue devtools
     extend(config, ctx) {
     },
   },
