@@ -56,14 +56,14 @@
       <p class="card-content">{{ card.contractname }}</p>
     </div>
     <!-- Infinite Loading Posts -->
-    <!-- <InfiniteLoading
+    <InfiniteLoading
       spinner="bubbles"
       @infinite="infiniteHandler"
       style="grid-column: 1 / 3"
     >
       <div slot="no-more">No more Prod Cards</div>
       <div slot="no-results">No results</div>
-    </InfiniteLoading> -->
+    </InfiniteLoading>
     <!-- <div
         class="grid"
         v-if="prodCards"
@@ -79,14 +79,14 @@
       <p class="card-content">{{ card.contractname }}</p>
     </div>
     <!-- Infinite Loading Posts -->
-    <InfiniteLoading
+    <!-- <InfiniteLoading
       spinner="bubbles"
       @infinite="infiniteHandler"
       style="grid-column: 1 / 3"
     >
       <div slot="no-more">No more Tech Cards</div>
       <div slot="no-results">No results</div>
-    </InfiniteLoading>
+    </InfiniteLoading> -->
     <!-- <div
         class="grid"
         v-if="techCards"
@@ -110,12 +110,12 @@
         prerender: 25,
         prodMissions: [],
         techMissions: [],
-        // prodCards: [],
-        // techCards: [],
+        prodCards: [],
+        techCards: [],
         numberOfRecords: 5
       }
     },
-    asyncData() {
+    /* asyncData() {
       const apiUrl = `http://contentplace.x1.fr/cards?client_secret=%242y%2410%24r1u8S82qpoLo.ASFBnUQCe6MGJhOyuGYderz5fA64asogQ3LFpJIi&numberOfRecords=5`
       return axios.get(`${apiUrl}`)
         .then(response => {
@@ -124,19 +124,20 @@
               techCards: response.data.techCards,
             }
         })
-    },
+    }, */
     methods: {
       infiniteHandler($state) {
-        console.log(this.prodCards)
-        axios
-          .get(
+        // console.log(this.prodCards)
+        return this.$axios
+          .$get(
             `http://contentplace.x1.fr/cards?client_secret=%242y%2410%24r1u8S82qpoLo.ASFBnUQCe6MGJhOyuGYderz5fA64asogQ3LFpJIi&numberOfRecords=${this.numberOfRecords}`
           )
           .then(response => {
+            console.log(response)
             if (response.data.length > 0) {
               this.numberOfRecords += 5;
-              this.prodCards.push(...response.data.prodCards);
-              this.prodCards.push(...response.data.techCards);
+              this.prodCards.push(response.data.prodCards);
+              // this.techCards.push(response.data.techCards);
               $state.loaded();
             } else {
               $state.complete();
@@ -201,6 +202,11 @@
 </script>
 
 <style lang="scss" scoped>
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+  }
   .card {
     background-color: #fff;
     border-radius: 6px;
