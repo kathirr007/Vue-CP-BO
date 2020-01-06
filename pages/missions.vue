@@ -47,51 +47,79 @@
     </RecycleScroller> -->
     <h1>Task Cards</h1>
     <h2>Prod Cards</h2>
-    <div
-      class="card"
-      v-for="(card, index) in prodCards"
-      :key="index"
-    >
-      <h2 class="card-header-title">{{ card.client_name }}</h2>
-      <p class="card-content">{{ card.contractname }}</p>
+    <div class="container">
+      <div
+          class="grid"
+          v-if="prodCards"
+        >
+        <div
+          class="card"
+          v-for="(card, index) in prodCards"
+          :key="index"
+        >
+          <h2 class="card-header-title">{{ card.client_name }}</h2>
+          <p class="card-content">{{ card.contractname }}</p>
+        </div>
+        <!-- Infinite Loading Posts -->
+        <InfiniteLoading
+          spinner="bubbles"
+          @infinite="infiniteHandler"
+          style="grid-column: 1 / 3"
+        >
+          <div slot="no-more">No more Prod Cards</div>
+          <div slot="no-results">No results</div>
+        </InfiniteLoading>
+      </div>
     </div>
-    <!-- Infinite Loading Posts -->
-    <InfiniteLoading
-      spinner="bubbles"
-      @infinite="infiniteHandler"
-      style="grid-column: 1 / 3"
-    >
-      <div slot="no-more">No more Prod Cards</div>
-      <div slot="no-results">No results</div>
-    </InfiniteLoading>
-    <!-- <div
-        class="grid"
-        v-if="prodCards"
-      >
-    </div> -->
     <h2>Tech Cards</h2>
-    <div
-      class="box"
-      v-for="(card, index) in techCards"
-      :key="index"
-    >
-      <h2 class="card-header-title">{{ card.client_name }}</h2>
-      <p class="card-content">{{ card.contractname }}</p>
+    <div class="container">
+      <div
+          class="grid"
+          v-if="techCards"
+        >
+        <div
+          class="card"
+          v-for="(card, index) in techCards"
+          :key="index"
+        >
+          <h2 class="card-header-title">{{ card.client_name }}</h2>
+          <p class="card-content">{{ card.contractname }}</p>
+        </div>
+        <!-- Infinite Loading Posts -->
+        <InfiniteLoading
+          spinner="bubbles"
+          @infinite="infiniteHandler"
+          style="grid-column: 1 / 3"
+        >
+          <div slot="no-more">No more Tech Cards</div>
+          <div slot="no-results">No results</div>
+        </InfiniteLoading>
+      </div>
     </div>
-    <!-- Infinite Loading Posts -->
-    <!-- <InfiniteLoading
-      spinner="bubbles"
-      @infinite="infiniteHandler"
-      style="grid-column: 1 / 3"
-    >
-      <div slot="no-more">No more Tech Cards</div>
-      <div slot="no-results">No results</div>
-    </InfiniteLoading> -->
-    <!-- <div
+    <div class="container">
+      <div
         class="grid"
-        v-if="techCards"
+        v-if="posts"
       >
-    </div> -->
+        <div
+          class="card"
+          v-for="(post, index) in posts"
+          :key="index"
+        >
+          <h2 class="card-header-title">{{ post.title }}</h2>
+          <p class="card-content">{{ post.body }}</p>
+        </div>
+        <!-- Infinite Loading Posts -->
+        <InfiniteLoading
+          spinner="bubbles"
+          @infinite="infiniteHandler2"
+          style="grid-column: 1 / 3"
+        >
+          <div slot="no-more">No more message</div>
+          <div slot="no-results">No results</div>
+        </InfiniteLoading>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -112,7 +140,9 @@
         techMissions: [],
         prodCards: [],
         techCards: [],
-        numberOfRecords: 5
+        numberOfRecords: 5,
+        posts: [],
+        numberPosts: 6
       }
     },
     /* asyncData() {
@@ -126,18 +156,42 @@
         })
     }, */
     methods: {
+      infiniteHandler2($state) {
+        axios
+          .get(
+            `https://jsonplaceholder.typicode.com/posts?_start=0&_limit=${this.numberPosts}`
+          )
+          .then(response => {
+            // console.log(response.data)
+            if (response.data.length > 0) {
+              this.numberPosts += 6;
+              this.posts.push(...response.data);
+              $state.loaded();
+              // console.log(this.posts)
+            } else {
+              $state.complete();
+            }
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      },
       infiniteHandler($state) {
         // console.log(this.prodCards)
-        return this.$axios
+        this.$axios
           .$get(
             `http://contentplace.x1.fr/cards?client_secret=%242y%2410%24r1u8S82qpoLo.ASFBnUQCe6MGJhOyuGYderz5fA64asogQ3LFpJIi&numberOfRecords=${this.numberOfRecords}`
           )
           .then(response => {
             console.log(response)
-            if (response.data.length > 0) {
+            console.log(typeof((response.data)))
+            console.log(response.data)
+            console.log(response.data.length)
+            console.log(response.data.prodCards)
+            if (response.data != null) {
               this.numberOfRecords += 5;
-              this.prodCards.push(response.data.prodCards);
-              // this.techCards.push(response.data.techCards);
+              this.prodCards.push(...response.data.prodCards);
+              this.techCards.push(...response.data.techCards);
               $state.loaded();
             } else {
               $state.complete();
@@ -202,6 +256,10 @@
 </script>
 
 <style lang="scss" scoped>
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -214,6 +272,10 @@
     color: #4a4a4a;
     display: block;
     padding: 1.25rem;
+
+    &:not(:last-child){
+      margin-bottom: 1.5rem;
+    }
   }
 
   .scroller {
