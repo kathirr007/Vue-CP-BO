@@ -82,14 +82,14 @@
           </p>
         </div>
         <!-- Infinite Loading Posts -->
-        <InfiniteLoading
+        <!-- <InfiniteLoading
           spinner="bubbles"
           @infinite="infiniteHandler"
           style="grid-column: 1 / 3"
         >
           <div slot="no-more">No more Prod Cards</div>
           <div slot="no-results">No results</div>
-        </InfiniteLoading>
+        </InfiniteLoading> -->
       </div>
     </div>
     <!-- <h2>Tech Cards</h2>
@@ -140,23 +140,28 @@
         numberOfRecords: 10,
         posts: [],
         numberPosts: 6,
-        cards:[]
+        // cards:[]
       }
     },
-    /* asyncData() {
-      const apiUrl = `http://contentplace.x1.fr/cards?client_secret=%242y%2410%24r1u8S82qpoLo.ASFBnUQCe6MGJhOyuGYderz5fA64asogQ3LFpJIi&numberOfRecords=5`
-      return axios.get(`${apiUrl}`)
+    asyncData({$axios}) {
+      const apiUrl = `http://contentplace.x1.fr/cards?client_secret=%242y%2410%24r1u8S82qpoLo.ASFBnUQCe6MGJhOyuGYderz5fA64asogQ3LFpJIi&startFrom=0&numberOfRecords=10`
+      return $axios.$get(`${apiUrl}`)
         .then(response => {
+          // let fetchedCards = {...response.data.prodCards, ...response.data.techCards}
           return {
-              prodCards: response.data.prodCards,
-              techCards: response.data.techCards,
-            }
+            cards: [...response.data.prodCards, ...response.data.techCards].sort((a,b) => {
+              return new Date(b.card_created_at) - new Date(a.card_created_at)
+            })
+          }
         })
-    }, */
+        .catch(error => {
+          console.error(error);
+        });
+    },
     methods: {
-      infiniteHandler($state) {
+      /* async infiniteHandler($state) {
         // console.log(this.prodCards)
-        this.$axios
+        await this.$axios
           .$get(
             `http://contentplace.x1.fr/cards?client_secret=%242y%2410%24r1u8S82qpoLo.ASFBnUQCe6MGJhOyuGYderz5fA64asogQ3LFpJIi&startFrom=${this.startFrom}&numberOfRecords=10`
           )
@@ -188,7 +193,7 @@
           .catch(error => {
             console.error(error);
           });
-      }
+      } */
     },
     components: {
       DynamicScroller, RecycleScroller, InfiniteLoading
@@ -260,10 +265,11 @@
     color: #4a4a4a;
     display: block;
     padding: 1.25rem;
+    margin-bottom: 1.5rem;
 
-    &:not(:last-child){
+    /* &:not(:last-child){
       margin-bottom: 1.5rem;
-    }
+    } */
   }
 
   .scroller {
