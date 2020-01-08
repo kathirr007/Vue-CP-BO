@@ -57,7 +57,7 @@
           v-for="(card, index) in cards"
           :key="index"
         >
-          <h2 class="card-header-title">{{ card.client_name }}</h2>
+          <h2 class="card-header-title">{{ card.client_name }} <small><em>Card No. {{ card.card_id }}</em></small></h2>
           <p class="card-content">{{ card.contractname }}</p>
           <h3>
             Card Important Dates
@@ -82,14 +82,14 @@
           </p>
         </div>
         <!-- Infinite Loading Posts -->
-        <!-- <InfiniteLoading
+        <InfiniteLoading
           spinner="bubbles"
           @infinite="infiniteHandler"
           style="grid-column: 1 / 3"
         >
           <div slot="no-more">No more Prod Cards</div>
           <div slot="no-results">No results</div>
-        </InfiniteLoading> -->
+        </InfiniteLoading>
       </div>
     </div>
     <!-- <h2>Tech Cards</h2>
@@ -128,6 +128,18 @@
   import InfiniteLoading from 'vue-infinite-loading';
   import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
+  Vue.use(InfiniteLoading, {
+    props: {
+      spinner: 'default',
+      /* other props need to configure */
+      distance: 500
+    },
+    system: {
+      // throttleLimit: 50,
+      /* other settings need to configure */
+    },
+  });
+
   export default {
     data(){
       return {
@@ -140,10 +152,10 @@
         numberOfRecords: 10,
         posts: [],
         numberPosts: 6,
-        // cards:[]
+        cards:[]
       }
     },
-    asyncData({$axios}) {
+    /* asyncData({$axios}) {
       const apiUrl = `http://contentplace.x1.fr/cards?client_secret=%242y%2410%24r1u8S82qpoLo.ASFBnUQCe6MGJhOyuGYderz5fA64asogQ3LFpJIi&startFrom=0&numberOfRecords=10`
       return $axios.$get(`${apiUrl}`)
         .then(response => {
@@ -157,9 +169,9 @@
         .catch(error => {
           console.error(error);
         });
-    },
+    }, */
     methods: {
-      /* async infiniteHandler($state) {
+      async infiniteHandler($state) {
         // console.log(this.prodCards)
         await this.$axios
           .$get(
@@ -193,7 +205,7 @@
           .catch(error => {
             console.error(error);
           });
-      } */
+      }
     },
     components: {
       DynamicScroller, RecycleScroller, InfiniteLoading
