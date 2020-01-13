@@ -1,0 +1,143 @@
+/* job task creation styles starts */
+.job-task-creation-container {
+    .job-task-creation-title {
+        font-size: 20px;
+        color: $main;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    h4.title {
+        border-bottom: 1px solid $divider-color-02;
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .select-assignee-container {
+        .selected-assignee-list {
+            .selected-assignee-container {
+                @extend .card;
+
+                margin-bottom: 10px;
+                background: #fff;
+                padding: 5px 15px;
+
+                &:first-child {
+                    margin-top: 10px;
+                }
+
+                .user-image {
+                  margin-left: 15px;
+                  width: 30px;
+                  height: 30px;
+                  padding: 0;
+
+
+                  img {
+                    max-width: 100%;
+                    width: 30px;
+                    height: 30px;
+                    object-fit: contain;
+                  }
+
+                  .card-user-empty {
+                    width: 30px;
+                    height: 30px;
+                    font-size: 14px;
+                    color: #fff;
+                  }
+                }
+
+                .assignee-info {
+                  font-weight: 700;
+                }
+
+                .price-info {
+                  font-weight: 700;
+
+                  .input-group-addon {
+                    font-weight: 700;
+                  }
+                }
+
+                .delete-assignee {
+                    position: absolute;
+                    right: 5px;
+                    padding: 0;
+                    @extend .df-ac-jc;
+                }
+              }
+            /* list-style-type: none;
+            padding: 0;
+            margin: 10px 0 0;
+
+            .card {
+                padding: 5px;
+                display: flex;
+                align-items: center;
+                position: relative;
+                margin-bottom: 10px;
+
+                .remove-assignee {
+                    position: absolute;
+                    right: 10px;
+
+                    i {
+                        font-size: 18px;
+
+                        &:hover {
+                            color: $main;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    margin: 0;
+                }
+            }
+
+            img,
+            .card-user-empty {
+                margin-right: 10px;
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+                border-radius: 50%;
+                display: inline-flex;
+            }
+
+            .card-user-empty {
+                background-color: $main;
+                color: #fff;
+            } */
+        }
+    }
+
+    .your-cards-table-container {
+        table {
+            th {
+                color: $main;
+                font-weight: 600;
+            }
+
+            td {
+                p {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .input-card-name {}
+        .external-user-toggle-container, .show-rate, p.show-volume {
+            height: 38px;
+            .switch {
+                // margin-top: 6px;
+            }
+        }
+        .edit-rate, .volume-with-bands, .show-volume {
+            display: none;
+        }
+    }
+}
+
+/* job task creation styles ends */

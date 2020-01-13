@@ -141,6 +141,11 @@
   });
 
   export default {
+    head() {
+      return {
+        title: "LBD | Vue Version | Missions"
+      }
+    },
     data(){
       return {
         prerender: 25,

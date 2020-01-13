@@ -27,16 +27,28 @@
           GitHub
         </a>
       </div>
+      <div id="slider"></div>
     </div>
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
+import $ from 'jquery'
+import jqueryUI from 'jquery-ui'
+
+/* $( function() {
+    jqueryUI( "#slider" ).slider();
+  } ); */
 
 export default {
   components: {
     Logo
+  },
+  head() {
+    return {
+      title: "LBD | Vue Version"
+    }
   }
 }
 </script>

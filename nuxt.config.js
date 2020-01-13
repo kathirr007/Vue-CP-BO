@@ -1,4 +1,6 @@
 /* eslint-disable */
+const webpack = require("webpack");
+
 module.exports = {
   server: {
     // port: 3100, // default 3000
@@ -33,17 +35,39 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    // '@assets/lbd/css/lbd-bundle.css',
+    '@assets/lbd/css/bootstrap.min.css',
+    '@assets/lbd/css/bootstrap-table.min.css',
+    '@assets/lbd/css/font-awesome.min.css',
+    // '@assets/lbd/css/jquery-ui.min.css',
+    '@assets/lbd/css/jquery.mCustomScrollbar.min.css',
+    '@assets/lbd/css/material-icons.css',
+    // '@assets/lbd/css/jquery-ui-1.8.20.custom.css',
+    // '@assets/lbd/lib/plugins-bundle.css',
+    '@assets/sass/light-bootstrap-dashboard.scss',
+    // '@assets/sass/main.scss'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     // '~/plugins/jquery'
+    // '~/plugins/lbd-bundle.js',
+    '~plugins/js/jquery-ui-1.10.0.custom.min.js',
+    '~plugins/js/jquery-ui-slider.min.js',
+    '~plugins/js/jquery.validate.min.js',
+    '~plugins/js/jquery.mCustomScrollbar.js',
+    '~/plugins/custom.js'
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    // Simple usage
+    // '@nuxtjs/moment',
+
+    // With options
+    ['@nuxtjs/moment', { /* module options */ }]
   ],
   /*
   ** Nuxt.js modules
@@ -58,7 +82,12 @@ module.exports = {
     // proxy module
     // https://www.npmjs.com/package/@nuxtjs/proxy
     '@nuxtjs/proxy',
+    '@nuxtjs/style-resources',
   ],
+  styleResources: {
+    // your settings here
+    // scss: ['./assets/sass/main.scss']
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -90,11 +119,27 @@ module.exports = {
   }, */
   /* enable Vue devtools ends*/
   build: {
+    /* styleResources: {
+      // your settings here
+      scss: ['./assets/sass/main.scss']
+    }, */
+    /**
+     * add external plugins
+     */
+    vendor: ["jquery"],
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        jquery: "jquery",
+      })
+    ],
     /*
     ** You can extend webpack config here
     */
     devtools: true, //enable Vue devtools
     extend(config, ctx) {
     },
+
   },
 };

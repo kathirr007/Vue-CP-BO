@@ -1,0 +1,57 @@
+<template>
+  <ul class="main-nav">
+    <li>
+        <a href="clients.html" class="nav-link">
+            <i class="material-icons">business</i>
+            Clients
+        </a>
+    </li>
+    <li>
+        <a href="quote.html" class="nav-link">
+            <i class="material-icons">monetization_on</i>
+            Quotes
+        </a>
+    </li>
+    <li>
+        <a href="contracts.html" class="nav-link">
+            <i class="material-icons">assignment</i>
+            Contracts
+        </a>
+    </li>
+    <li>
+        <a href="mission.html" class="nav-link">
+            <i class="material-icons">alarm</i>
+            Missions
+        </a>
+    </li>
+    <li>
+        <a href="quizz-surveys-list.html" class="nav-link">
+          <i class="material-icons">assignment_turned_in</i>
+            Quiz &amp; Survey
+        </a>
+    </li>
+    <li>
+        <a href="contributors.html" class="nav-link">
+            <i class="material-icons">face</i>
+            Contributors
+        </a>
+    </li>
+      <li>
+          <a href="admin-list.html" class="nav-link">
+              <i class="material-icons">settings</i>
+              Admin
+          </a>
+      </li>
+  </ul>
+
+</template>
+
+<script>
+  export default {
+    // name: MainMenu
+  }
+</script>
+
+<style lang="scss" scoped>
+
+</style>

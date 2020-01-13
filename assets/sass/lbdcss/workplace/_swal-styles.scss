@@ -1,0 +1,94 @@
+/* Sweet Alert Styles Starts*/
+
+.swal2-container {
+    z-index: 1050;
+}
+.swal2-confirm-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    .swal2-confirm-popup {
+        transition: transform .3s ease-out;
+        transform: translateY(-25%);
+    }
+    &.in {
+        .swal2-confirm-popup {
+            transform: translateY(0);
+        }
+    }
+
+}
+
+.swal2-modal,
+.sweet-alert {
+
+    .swal2-title,
+    h2 {
+        font-size: 20px;
+        color: $main;
+        font-weight: 600;
+    }
+
+    .swal2-content,
+    p {
+        font-weight: $font-weight-normal;
+        color: #7d889a;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0 0 10px;
+        text-align: left;
+    }
+
+    /* [class*=btn-] {
+  	width: auto !important;
+  } */
+    &.swal2-confirm-popup {
+
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+
+        .swal2-close, .swal2-cancel-btn, a.close-swal2 {
+            color: $helper;
+            outline: none;
+            &:hover {
+                color: #448aff;
+            }
+        }
+        .swal2-cancel-btn {
+            font-size: 12px;
+        }
+        button {
+            font-family: $font-source, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            // font-size: 14px;
+        }
+
+        .swal2-title {
+            margin-top: 14px;
+        }
+
+        .swal2-content {
+            margin: 0;
+        }
+
+        .swal2-confirm-btn, .swal2-confirm {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 14px;
+            &:focus {
+                background: #69A1FF !important;
+                border-color: #69A1FF !important;
+            }
+        }
+
+        .swal2-buttonswrapper {
+            margin: 0;
+        }
+    }
+}
+
+/* Sweet Alert Styles Ends*/

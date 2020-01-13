@@ -1,0 +1,26 @@
+/* bootstrap mixins */
+// stylelint-disable declaration-no-important
+
+// Typography
+
+@mixin text-emphasis-variant($parent, $color) {
+    #{$parent} {
+        color: $color !important;
+    }
+
+    @if $emphasized-link-hover-darken-percentage !=0 {
+        a#{$parent} {
+            @include hover-focus {
+                color: darken($color, $emphasized-link-hover-darken-percentage);
+            }
+        }
+    }
+}
+
+/* custom backgrounds and text-colors */
+
+@each $site-colors,
+$value in $site-colors {
+    @include bg-variant(".bg-#{$site-colors}", $value);
+    @include text-emphasis-variant(".text-#{$site-colors}", $value);
+}

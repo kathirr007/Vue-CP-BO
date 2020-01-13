@@ -1,10 +1,45 @@
 <template>
-  <div>
+  <div class="wp-app layout-3">
+    <MainMenu />
+    <div class="wrapper">
+      <sideBar />
+    </div>
     <nuxt />
   </div>
 </template>
 
-<style>
+<script>
+  import MainMenu from '../components/MainMenu.vue'
+  import sideBar from '../components/sideBar.vue'
+  export default {
+    head() {
+      return {
+        title: "",
+        meta: [
+          { charset: 'utf-8' },
+          { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1' },
+          { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0' },
+          { name: 'keywords', content: 'keyword 1, keyword 2'},
+          { hid: 'description', name: 'description', content: 'This is the generic description.'}
+        ],
+        link: [
+          { rel: 'icon', type:'image/png', href: '~/static/favicon.ico' },
+          { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp' },
+        ],
+        script: [
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' }
+        ]
+      }
+    },
+    components: {
+      MainMenu,
+      sideBar
+    }
+  }
+</script>
+
+<style lang="scss">
+// @import '~assets/lbd/css/lbd-bundle.css';
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
