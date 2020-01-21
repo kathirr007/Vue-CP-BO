@@ -3,8 +3,8 @@
     <MainMenu />
     <div class="wrapper">
       <sideBar />
+      <nuxt />
     </div>
-    <nuxt />
   </div>
 </template>
 
@@ -86,5 +86,8 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+.wrapper {
+  overflow-y: auto;
 }
 </style>

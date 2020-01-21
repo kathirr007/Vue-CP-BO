@@ -35,7 +35,7 @@
 <script>
 import Logo from '~/components/Logo.vue'
 import $ from 'jquery'
-import jqueryUI from 'jquery-ui'
+// import jqueryUI from 'jquery-ui'
 
 /* $( function() {
     jqueryUI( "#slider" ).slider();

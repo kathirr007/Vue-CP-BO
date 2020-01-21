@@ -56,6 +56,7 @@ module.exports = {
     '~plugins/js/jquery-ui-1.10.0.custom.min.js',
     '~plugins/js/jquery-ui-slider.min.js',
     '~plugins/js/jquery.validate.min.js',
+    '~plugins/js/jquery-mousewheel.js',
     '~plugins/js/jquery.mCustomScrollbar.js',
     '~/plugins/custom.js'
   ],

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <!-- <h1>
       Missions list
     </h1> -->
@@ -47,7 +47,7 @@
     </RecycleScroller> -->
     <h1>Task Cards</h1>
     <h2>Prod Cards</h2>
-    <div class="container">
+    <div>
       <div
           class="grid"
           v-if="cards"
@@ -132,10 +132,10 @@
     props: {
       spinner: 'default',
       /* other props need to configure */
-      distance: 500
+      // distance: 500
     },
     system: {
-      // throttleLimit: 50,
+      throttleLimit: 50,
       /* other settings need to configure */
     },
   });
